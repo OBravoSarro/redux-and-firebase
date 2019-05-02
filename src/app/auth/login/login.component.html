@@ -29,7 +29,11 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<button class="btn btn-primary submit-btn btn-block" [disabled]="f.invalid">Login</button>
+							<button *ngIf="!loading" class="btn btn-primary submit-btn btn-block" [disabled]="f.invalid">Login</button>
+							<button *ngIf="loading" class="btn btn-primary submit-btn btn-block" [disabled]="true">
+								<i class="fas fa-spinner fa-pulse"></i>
+								Iniciando sesión
+							</button>
 						</div>
 
 

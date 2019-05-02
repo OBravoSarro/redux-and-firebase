@@ -4,9 +4,15 @@ export class User {
     public name?: string;
     public password?: string;
 
-    constructor( name: string, email: string, uid: string ) {
-        this.name = name;
-        this.uid = uid;
-        this.email = email;
+    constructor( objectInput: DataObjectInput ) {
+        this.name = objectInput && objectInput.name || null;
+        this.uid = objectInput && objectInput.uid || null;
+        this.email = objectInput && objectInput.email || null;
     }
+}
+
+interface DataObjectInput {
+    uid: string;
+    email: string;
+    name: string;
 }
