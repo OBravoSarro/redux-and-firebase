@@ -1,0 +1,48 @@
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Detalle de ingreso egreso</h4>
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Descripción</th>
+              <th>Cantidad</th>
+              <th>Tipo</th>
+              <th class="text-center">Añadido</th>
+              <th></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let operation of operations$ | async">
+              <td class="align-middle">{{operation.description}}</td>
+              <td class="align-middle">{{operation.amount | currency:'EUR':'symbol'}}</td>
+              <td class="align-middle">
+                <span [ngClass]="{
+                  'text-success': operation.type === 'income',
+                  'text-danger': operation.type === 'withdrawal'
+                }">
+                  <i class="fa fa-arrow-left" *ngIf="operation.type === 'income'"></i>
+                  <i class="fa fa-arrow-right" *ngIf="operation.type === 'withdrawal'"></i>
+                </span>
+              </td>
+              <td class="align-middle text-center">
+                {{operation.create | date:'dd-MM-yyyy'}}<br/>{{operation.create | date:'HH:mm'}}
+              </td>
+              <td class="align-middle">
+                <button class="btn btn-danger btn-sm icon-only" (click)="deleteOperation(operation)">
+                  <i class="fa fa-trash"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+
+        </table>
+
+
+      </div>
+    </div>
+  </div>
+</div>
