@@ -58,8 +58,8 @@
                     <p class="mb-0 text-right">Diferencia</p>
                     <div class="fluid-container">
                       <h3 [ngClass]="{
-                        'text-success': ingresos - egresos > 0,
-                        'text-danger': ingresos - egresos < 0
+                        'text-success': income - withdrawal > 0,
+                        'text-danger': income - withdrawal < 0
                       }"
                           class="font-weight-medium text-right mb-0">
                         {{ income - withdrawal | currency:'EUR':'symbol' }}
