@@ -1,11 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { AppState } from '../../app.reducer';
 import { Subscription } from 'rxjs';
-import { OperationsState } from '../store/operations.reducer';
+import * as fromOperators from '../store/operations.reducer';
 import { Operation, typeOperation } from '../operations.model';
 import { Label, SingleDataSet } from 'ng2-charts';
-import { ChartType, ChartColor } from 'chart.js';
+import { ChartType } from 'chart.js';
 
 @Component({
   selector: 'app-statistic',
@@ -25,9 +24,9 @@ export class StatisticComponent implements OnInit, OnDestroy {
   public doughnutChartData: SingleDataSet = [];
   public doughnutChartType: ChartType = 'doughnut';
 
-  constructor(private store: Store<AppState>) {
+  constructor(private store: Store<fromOperators.AppState>) {
     this.operationsSubscribe =  this.store.select('operations').subscribe(
-      (opertionsStore: OperationsState) => {
+      (opertionsStore: fromOperators.OperationsState) => {
         this.countOperations(opertionsStore.items);
       }
     );

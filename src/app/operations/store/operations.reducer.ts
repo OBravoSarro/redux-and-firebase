@@ -1,8 +1,13 @@
 import * as fromOperations from './operations.actions';
 import { Operation } from '../operations.model';
+import { AppState } from '../../app.reducer';
 
 export interface OperationsState {
     items: Operation[];
+}
+
+export interface AppState extends AppState {
+    operations: OperationsState;
 }
 
 const initState: OperationsState = {

@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { AppState } from 'src/app/app.reducer';
 import { Operation } from '../operations.model';
-import { OperationsState } from '../store/operations.reducer';
+import * as fromOperations from '../store/operations.reducer';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { OperationsService } from '../operations.service';
@@ -17,11 +16,11 @@ export class DetailComponent extends Messages {
 
   operations$: Observable<Operation[]>;
 
-  constructor(private store: Store<AppState>, private _operations: OperationsService) {
+  constructor(private store: Store<fromOperations.AppState>, private _operations: OperationsService) {
     super();
 
     this.operations$ = this.store.select('operations').pipe(
-      map((operationsStore: OperationsState) => operationsStore.items)
+      map((operationsStore: fromOperations.OperationsState) => operationsStore.items)
     );
   }
 
